@@ -18,7 +18,7 @@ while :; do
     #if the transcode list is empty or missing build a new list
     if [ ! -s /data/to_be_transcoded.txt ]; then
         touch /data/to_be_transcoded.txt
-        find $REMOTE_DIR -type f \( -iname '*.ts' -or  -iname '*.mkv'  -or  -iname '*.mp4' -not -iname '*-trailer.*' -not -iname '*-NEW.*' \) | while read line; do     
+        find $REMOTE_DIR -type f \( -iname '*.ts' -or  -iname '*.mkv'  -or  -iname '*.mp4' \) |  grep -v 'trailer\|NEW' | while read line; do     
             filename=$(basename "$line")
             extension="${filename##*.}"
             filename="${filename%.*}"
