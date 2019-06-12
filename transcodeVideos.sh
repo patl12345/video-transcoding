@@ -12,7 +12,8 @@ fi
 LOCAL_DIR="/data"
 REMOTE_DIR="/movies"
 
-while [1]; do
+#loop forever
+while :; do
 
     #if the transcode list is empty or missing build a new list
     if [ ! -s /data/to_be_transcoded.txt ]; then
