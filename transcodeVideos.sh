@@ -54,20 +54,20 @@ while :; do
         remoteTagFile=$remoteDir/$filename.compressed
 
         #copy file locally
-        cp '$file' '$localSrcFile'
+        cp "$file" "$localSrcFile"
 
         #transcode
         echo "" | transcode-video --preset faster --quick $localSrcFile -o $localTargetFile #note, the echo is to stop tv hijacking stdin and stopping the loop
 
         #copy file back to nfs
-        cp '$localTargetFile' '$remoteTargetFile'
+        cp "$localTargetFile" "$remoteTargetFile"
 
         #mark as processed
-        touch '$remoteTagFile'
+        touch $remoteTagFile
 
         #remove the local file copies
-        rm '$localSrcFile'
-        rm '$localTargetFile'
+        rm $localSrcFile
+        rm $localTargetFile
         
         #remove the movie from the file
         tail -n +2 "/data/to_be_transcoded.txt" > "/data/to_be_transcoded.tmp" && mv  "/data/to_be_transcoded.tmp" "/data/to_be_transcoded.txt"
